@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1 class="display-3">Generate!</h1>
+
+    <br>
+    <form action="/generate" method="post">
+        <h5>Input character name and level.</h5>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="generate" name="generate" placeholder="Name" type="text" required>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="level" name="level" placeholder="Level" type="number" min="1" max="20" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Generate!</button>
+    </form>
+    <br>
+    <img src="{{ image }}" class="portrait rounded mx-auto d-block">
+    <br>
+    {% if desc %}
+        <div class="container py-4 center">{{ title }}</div>
+        <br>
+        <div class="container py-4 center">{{ script }}</div>
+        <br>
+        <div class="container py-4 center">{{ desc }}</div>
+    {% endif %}
+    <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content">
+            <h1 class="display-3 w3-padding-64">Your character is being generated!</h1>
+            <img src="/static/Image/loading.gif" class="imgabs">
+          </div>
+        </div>
+    </div>
+
+    <script>
+        function ShowModal() {
+            const nameInput = document.getElementById('generate');
+            const levelInput = document.getElementById('level');
+
+            if (nameInput.value.trim() !== '' && levelInput.value.trim() !== '') {
+                console.log('fields filled');
+                const backdropModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+                backdropModal.show();
+            } else {
+                console.log('fields empty');
+                // Handle form validation here or display a message
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').addEventListener('submit', function(event) {
+                ShowModal();
+            });
+        });
+    </script>
+{% endblock %}

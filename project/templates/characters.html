@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <h1 class="display-3">All Characters</h1>
+    <br>
+    <div class="container py-4 text-center">
+        <h5>Character Library</h5>
+    </divclass>
+    <div class="accordion" id="accordionCharacters">
+        {% for item in characters %}
+        <div class="accordion-item border-top">
+            <h2 class="accordion-header" id="heading{{ item[0] }}">
+            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ item[0] }}" aria-expanded="false" aria-controls="collapse{{ item[0] }}">
+                {{ item[1] }} {{ item[2] }}
+            </button>
+            </h2>
+            <div id="collapse{{ item[0] }}" class="accordion-collapse collapse " aria-labelledby="heading{{ item[0] }}">
+            <div class="accordion-body">
+                <div class="container py-4 center">{{ item[3] }}</div>
+                <br>
+                <div class="container py-4 center">{{ item[4] }}</div>
+                <br>
+                <div class="container py-4 center">{{ item[5] }}</div>
+                <br>
+                <div><img src="{{ item[6] }}" class="portrait rounded mx-auto d-block"></div>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div> 
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1 class="display-3">Welcome to Character Generator</h1>
+    <br>
+    <div class="container py-4 center">
+        <h5>This webapp was made to quickly create Dungeons & Dragons 5e Characters. All created characters are saved in the character library in the CHARACTERS page.</h5>
+        <br>
+        <h5>This webapp utilizes AI APIs from OpenAI and ClipDrop to generate the characters.</h5>
+        <br>
+        <img src="{{ url_for('static', filename='Image/background.png') }}" class="banner rounded mx-auto d-block">
+    </divclass>
+{% endblock %}
